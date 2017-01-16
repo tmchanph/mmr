@@ -30,5 +30,8 @@
   "dependencies": {
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
+  },
+  "babel":{
+    "presets":["react", "es2015", "stage-0"] 
   }
 }
