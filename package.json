@@ -4,11 +4,12 @@
   "description": "Kanban Board Web App",
   "main": "index.js",
   "directories": {
+    "doc": "docs",
     "test": "tests"
   },
   "scripts": {
     "start": "webpack-dev-server -d --progress --colors --display-error-details",
-    "build": "NODE_ENV=production node_modules/.bin/webpack -p --progress --colors --display-error-details",
+    "build": "npm run env NODE_ENV=production&&webpack -p --progress --colors --display-error-details",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -31,7 +32,12 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },
-  "babel":{
-    "presets":["react", "es2015", "stage-0"] 
-  }
+  "babel": {
+    "presets": [
+      "react",
+      "es2015",
+      "stage-0"
+    ]
+  },
+  "keywords": []
 }
