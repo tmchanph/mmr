@@ -1,22 +1,35 @@
-const webpack = require('webpack');
+import webpack from 'webpack';
 
 const config = {
   devtool: "inline-source-map",
-  entry:  __dirname + "/app/app.js",
+  entry:  __dirname + "/app/app.jsx",
   output: {
     path: "./public/js/",
     publicPath: "/js/",
     filename: "bundle.js"
   },
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
   module: {
-    loaders: [{
-      test: /\.jsx?$/,
-      exclude: /node_modules/,
-      loader: "babel",
-      query: {
-        presets: ["es2015","react","stage-0"]
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: "babel",
+        query: {
+          presets: ["es2015","react"]
+        }
+      },
+      {
+        test: /\.css$/,
+        loader: "style-loader!css-loader"
+      },
+      {
+        test: /\.(png|jpg|eot|ttf|svg|woff|woff2)$/,
+        loader: 'url-loader?limit=8192'
       }
-    }]
+    ]
   },
   devServer: {
     contentBase: "./public",
@@ -25,6 +38,7 @@ const config = {
     inline: true
   },
 }
+
 if (process.env.NODE_ENV === 'production') {
   config.devtool = false;
   config.plugins = [
@@ -35,4 +49,5 @@ if (process.env.NODE_ENV === 'production') {
     })
   ];
 };
-module.exports = config;
+
+export default config;
